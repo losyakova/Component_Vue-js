@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <page>
+            <template #header>
+                <h1>Верхний колонтитул с заголовком</h1>
+            </template>
+            <p>Содержание страницы</p>
+            <p>Картинка с котиком</p>
+            <img src="cat.jpg" alt="Котик" width="300px">
+            <template #footer>
+                <p>Нижний колонтитул c контактной информацией</p>
+            </template>
+        </page>
+    </div>
+
+    <script type="text/x-template" id="page-template">
+        <div id="container">
+            <header>
+                <slot name="header"></slot>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <slot name="footer"></slot>
+            </footer>
+        </div>
+    </script>
+
+    <style>
+        #container{
+            margin: 0px auto;
+            padding: 0px;
+            max-width: 1000px;
+            min-width: 320px;
+        }
+        header{
+            width: 100%;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        footer{
+            width: 100%;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="slot.js"></script>
+</body>
+</html>

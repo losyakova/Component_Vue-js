@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Компонент профиля Github</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+</head>
+<body>
+    <div id="app" class="container">
+        <h1 class="text-center">Профили Github</h1>
+        <div class="row">
+            <github-profile v-for="user in users" :username="user"></github-profile>
+        </div>
+    </div>
+    
+    <script type="text/x-template" id="github-profile-template">
+        <div class="card mb-3 me-3 p-0" style="width: 18rem;">
+            <img :src="userInfo.avatar_url" class="card-img-top" :alt="userInfo.name">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <div class="content">
+                    <h4> <a :href="userInfo.html_url" class="text-decoration-none link-dark" >{{userInfo.name}}</a> </h4>
+                    <p class="card-subtitle text-body-secondary">Зарегистрирован в {{userInfo.created_at?.substring(0, 4)}} году </p>
+                    <p class="card-text mt-2 mb-2">{{userInfo.bio}}</p>
+                </div>
+                <div class="border-top pt-2">
+                    <i class="bi bi-person-fill"></i>
+                    <a :href="`https://github.com/${username}?tab=followers`" class="link-secondary text-decoration-none ms-2">{{userInfo.followers}} подписчики</a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="http://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
